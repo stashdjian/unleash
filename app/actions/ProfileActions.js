@@ -54,7 +54,7 @@ export function fetchProfile(id) {
 
     return fetch(`${config.profiles_api_url}/${id}`)
       .then(response => response.json())
-      .then(profile => dispatch(fetchProfileSuccess(profile)))
+      .then(fetchedProfile => dispatch(fetchProfileSuccess(fetchedProfile)))
       .catch(error => dispatch(fetchProfileFailure(error)));
   };
 }
