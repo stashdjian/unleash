@@ -10,23 +10,25 @@ class Profile extends Component {
   componentDidMount() {
     const { params, actions } = this.props;
     const userId = params.userId;
-    actions.pathsList(userId);
     actions.fetchProfile(userId);
+    actions.pathsList(userId);
   }
 
   render() {
-    const { actions, params, paths } = this.props;
+    const { actions, params, paths, profiles } = this.props;
     const userId = params.userId;
-    const skills = [{ name: 'mongoDB' }, { name: 'Angular' }];
-    const fakeProfile = { id: '114634487399949912483', lastName: 'Sójko', fullName: 'Karol Sójko', username: 'karol.sojko', email: 'karol.sojko@x-team.com', isAdmin: true, picture: 'https://lh3.googleusercontent.com/-bMOzaOKNYMY/AAAAAAAAAAI/AAAAAAAAADo/P8Z_HOUta9Q/s96-c/photo.jpg', firstName: 'Karol' };
+    const skills = [
+      { name: 'mongoDB', id: 'c390be96-168b-4f42-a0cd-933fbc46e249' },
+      { name: 'React', id: 'c390be96-168b-4f42-a0cd-933fbc46e240' }
+    ];
     return (
       <div>
         <div style={styles.userWrapper}>
-          <UserCard user={fakeProfile} router={this.props.router} key={userId} />
+          <UserCard user={profiles.profile} router={this.props.router} key={userId} />
         </div>
         <div style={styles.skillsWrapper}>
           {skills.map(skill => (
-            <Paper style={styles.skill} zDepth={2} circle="true">
+            <Paper key={skill.id} style={styles.skill} zDepth={2} circle >
               <span style={styles.skillTitle}>{skill.name}</span>
             </Paper>
           ))}
@@ -43,7 +45,7 @@ Profile.propTypes = {
   router: React.PropTypes.object.isRequired,
   params: React.PropTypes.object.isRequired,
   paths: React.PropTypes.object.isRequired,
-  profile: React.PropTypes.object.isRequired
+  profiles: React.PropTypes.object.isRequired
 };
 
 export default Profile;
@@ -53,8 +55,8 @@ styles = {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
-    width: '180px',
-    height: '180px',
+    width: '80px',
+    height: '80px',
     margin: '20px 20px 50px',
     padding: '20px',
     textAlign: 'center',
@@ -65,7 +67,7 @@ styles = {
     flexGrow: '1',
     alignItems: 'center',
     alignSelf: 'center',
-    fontSize: '22px',
+    fontSize: '12px',
     fontWeight: '200',
     padding: '5px',
     marginTop: '10px'
@@ -74,7 +76,7 @@ styles = {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     margin: 'auto',
     width: '90%',
     maxWidth: '1150px',

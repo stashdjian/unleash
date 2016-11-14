@@ -40,7 +40,7 @@ function profilesReducer(state = initialState, action) {
         isLoading: false,
       };
     case FETCH_PROFILE_SUCCESS:
-      return { ...state, profile: fetchedProfile };
+      return { ...state, profile: fetchedProfile.Item };
     case FETCH_PROFILE_FAILURE:
       return { ...state, error, profile: {} };
 

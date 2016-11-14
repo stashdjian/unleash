@@ -15,8 +15,8 @@ function fetchProfileStart() {
   return { type: FETCH_PROFILE_START };
 }
 
-function fetchProfileSuccess(profile) {
-  return { type: FETCH_PROFILE_SUCCESS, profile };
+function fetchProfileSuccess(fetchedProfile) {
+  return { type: FETCH_PROFILE_SUCCESS, fetchedProfile };
 }
 
 function fetchProfileFailure(error) {
